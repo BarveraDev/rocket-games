@@ -1,7 +1,7 @@
 const knex = require("../database/knex");
 const AppError = require("../utils/AppError");
-const authConfig = require("../configs/auth");
 const { compare } = require("bcryptjs");
+const authConfig = require("../configs/auth");
 const { sign } = require("jsonwebtoken");
 
 class SessionsControllers {
@@ -26,7 +26,7 @@ class SessionsControllers {
       expiresIn,
     });
 
-    response.json({ user, token });
+    return response.json({ user, token });
   }
 }
 

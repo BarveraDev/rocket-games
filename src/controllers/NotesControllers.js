@@ -21,7 +21,7 @@ class NotesControllers {
     });
 
     await knex("tags").insert(tagsInsert);
-    response.json({ message: "tags inserted" });
+    return response.json({ message: "tags inserted" });
   }
 
   async show(request, response) {
