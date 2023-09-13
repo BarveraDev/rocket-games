@@ -4,7 +4,6 @@ class NotesControllers {
   async create(request, response) {
     const { title, description, rating, tags } = request.body;
     const user_id = request.user.id;
-
     const [note_id] = await knex("notes").insert({
       title,
       description,
@@ -59,10 +58,7 @@ class NotesControllers {
         .innerJoin("notes", "notes.id", "tags.note_id")
         .orderBy("notes.title");
     } else {
-      notes = await knex("notes")
-        .where({ user_id })
-        .whereLike("title", `%${title}%`)
-        .orderBy("title");
+      notes = await knex("notes").where({ user_id }).orderBy("title");
     }
 
     const userTags = await knex("tags").where({ user_id });

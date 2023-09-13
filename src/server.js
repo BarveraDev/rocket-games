@@ -1,4 +1,5 @@
 require("express-async-errors");
+require("dotenv/config");
 const express = require("express");
 const routes = require("./routes");
 const AppError = require("./utils/AppError");
@@ -20,7 +21,6 @@ app.use((error, request, response, next) => {
       message: error.message,
     });
   }
-
   return response.status(500).json({
     status: "error",
     message: "Internal server error",
